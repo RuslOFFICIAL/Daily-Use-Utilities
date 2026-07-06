@@ -1,4 +1,4 @@
-Utilities for daily use.
+DUU - Daily-Use-Utilities.
 Yes, just like that. :3
 
 There's these utilities:
