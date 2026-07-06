@@ -67,9 +67,11 @@ if %errorlevel% NEQ 0 (
 	)
 ) else (
 	echo docx2pdf has been found.
+	goto Convert1
 )
 
-REM Convert.
+REM Convert docxTOpdf.
+:Convert1
 for %%f in ("%InputDir%\*.docx") do (
 	echo Processing: %%~nxf
 	docx2pdf "%%f" "%OutputDir%\%%~nf.pdf"
@@ -96,10 +98,12 @@ if %errorlevel% NEQ 0 (
 	)
 ) else (
 	echo pdf2docx has been found.
+	goto Convert2
 )
 
-REM Convert.
-for %%f in ("%InputDir%\*.docx") do (
+REM Convert pdfTOdocx.
+:Convert2
+for %%f in ("%InputDir%\*.pdf") do (
 	echo Processing: %%~nxf
 	python -c "from pdf2docx import Converter; cv = Converter(r'%%f'); cv.convert(r'%OutputDir%\%%~nf.docx'); cv.close()"
 )
