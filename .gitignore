@@ -3,8 +3,12 @@ Releases/
 TempReleases/
 
 # Files.
-*.lnk
 *.zip
+
+*.lnk
+!DUU-Launcher.lnk
+
 *.conf
 !Variables.conf
+
 f2z.bat
