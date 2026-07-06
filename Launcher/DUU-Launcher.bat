@@ -11,23 +11,18 @@ echo DUU-Launcher %DUU_Version%&echo.
 
 REM Choices.
 echo What script would you like to run?
-echo [1] docxTOpdf&echo [2] pdfTOdocx&echo [3] folderTOzip&echo [4] pngANDjpg
+echo [1] docxANDpdf&echo [2] folderTOzip&echo [3] pngANDjpg
 echo.
 
-choice /c 1234 /n /m "Enter your choice (1, 2, 3, 4): "
+choice /c 123 /n /m "Enter your choice (1, 2, 3): "
 
-if %errorlevel%==4 goto pngANDjpg
-if %errorlevel%==3 goto folderTOzip
-if %errorlevel%==2 goto pdfTOdocx
-if %errorlevel%==1 goto docxTOpdf
+if %errorlevel%==3 goto pngANDjpg
+if %errorlevel%==2 goto folderTOzip
+if %errorlevel%==1 goto docxANDpdf
 
 REM Results.
-:docxTOpdf
-set "ScriptName=docxTOpdf"
-goto End
-
-:pdfTOdocx
-set "ScriptName=pdfTOdocx"
+:docxANDpdf
+set "ScriptName=docxANDpdf"
 goto End
 
 :folderTOzip
