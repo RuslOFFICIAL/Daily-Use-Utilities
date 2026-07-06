@@ -7,3 +7,4 @@ TempReleases/
 *.zip
 *.conf
 !Variables.conf
+f2z.bat

@@ -6,16 +6,16 @@ if exist "..\..\.conf-files\Variables.conf" (
 	for /f "usebackq eol=# tokens=1,2 delims==" %%A in ("..\..\.conf-files\Variables.conf") do set "%%A=%%~B"
 )
 
-echo docxTOpdf %docxTOpdf_Version%&echo.
+echo pdfTOdocx %pdfTOdocx_Version%&echo.
 
-REM Check if docx2pdf is installed and available in the system PATH.
-where docx2pdf >nul 2>&1
+REM Check if pdf2docx is installed and available in the system PATH.
+python -c "import pdf2docx" >nul 2>&1
 if %errorlevel% NEQ 0 (
-	echo docx2pdf not found in PATH. Attempting installation...
-	python -m pip install docx2pdf
+	echo pdf2docx not found. Attempting installation...
+	python -m pip install pdf2docx
 	
 	REM Verify installation again.
-	where docx2pdf >nul 2>&1
+	python -c "import pdf2docx" >nul 2>&1
 	if %errorlevel% NEQ 0 (
 		echo Installation failed or command not found.
 		echo Please ensure Python is added to your PATH.
@@ -23,14 +23,14 @@ if %errorlevel% NEQ 0 (
 		exit /b
 	)
 ) else (
-	echo docx2pdf has been found.
+	echo pdf2docx has been found.
 	goto UserInput
 )
 
 REM User input.
 :UserInput
-set /p InputDir="Enter the source directory with .docx files (e.g. C:\Path\To\Doxc\Files): "
-set /p OutputDir="Enter the output directory for PDFs (e.g. C:\Path\To\PDF\Files): "
+set /p InputDir="Enter the source directory with .docx files (e.g. C:\Path\To\pdf\Files): "
+set /p OutputDir="Enter the output directory for DOCXs (e.g. C:\Path\To\DOCX\Files): "
 goto Check
 
 REM Check.
@@ -51,7 +51,7 @@ REM Convert.
 :Convert
 for %%f in ("%InputDir%\*.docx") do (
 	echo Processing: %%~nxf
-	docx2pdf "%%f" "%OutputDir%\%%~nf.pdf"
+	python -c "from pdf2docx import Converter; cv = Converter(r'%%f'); cv.convert(r'%OutputDir%\%%~nf.docx'); cv.close()"
 )
 goto End
 
