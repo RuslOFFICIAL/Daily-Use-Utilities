@@ -1,4 +1,5 @@
 DUU - Daily-Use-Utilities.
+To easily launch DUU use "DUU-Launcher", or "DUU-Launcher.lnk", or original "DUU-Launcher.bat".
 Yes, just like that. :3
 
 There's these utilities:
