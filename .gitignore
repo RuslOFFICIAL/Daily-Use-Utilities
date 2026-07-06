@@ -1,0 +1,9 @@
+# Folders.
+Releases/
+TempReleases/
+
+# Files.
+*.lnk
+*.zip
+*.conf
+!Variables.conf
