@@ -18,8 +18,7 @@ if %errorlevel% NEQ 0 (
 
 :Menu
 REM Images convertation choice.
-echo 1. PNG to JPG
-echo 2. JPG to PNG
+echo 1. PNG to JPG&echo 2. JPG to PNG
 set /p choice="Insert your choice (1, 2): "
 
 if "%choice%"=="1" (
