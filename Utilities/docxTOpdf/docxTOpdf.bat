@@ -51,7 +51,7 @@ REM Convert.
 :Convert
 for %%f in ("%InputDir%\*.docx") do (
 	echo Processing: %%~nxf
-	python -m docx2pdf "%%f" "%OutputDir%\%%~nf.pdf"
+	docx2pdf "%%f" "%OutputDir%\%%~nf.pdf"
 )
 goto End
 
