@@ -11,16 +11,22 @@ echo DUU-Launcher %DUU_Version%&echo.
 
 REM Choices.
 echo What script would you like to run?
-echo [1] docxANDpdf&echo [2] folderTOzip&echo [3] pngANDjpg
+echo [1] CleanTemp&echo [2] docxANDpdf&echo [3] folderTOzip&echo [4] pngANDjpg&echo [5] WindowsCheck 
 echo.
 
-choice /c 123 /n /m "Enter your choice (1, 2, 3): "
+choice /c 12345 /n /m "Enter your choice (1, 2, 3, 4, 5): "
 
-if %errorlevel%==3 goto pngANDjpg
-if %errorlevel%==2 goto folderTOzip
-if %errorlevel%==1 goto docxANDpdf
+if %errorlevel%==5 goto WindowsCheck
+if %errorlevel%==4 goto pngANDjpg
+if %errorlevel%==3 goto folderTOzip
+if %errorlevel%==2 goto docxANDpdf
+if %errorlevel%==1 goto CleanTemp
 
 REM Results.
+:CleanTemp
+set "ScriptName=CleanTemp"
+goto End
+
 :docxANDpdf
 set "ScriptName=docxANDpdf"
 goto End
@@ -31,6 +37,10 @@ goto End
 
 :pngANDjpg
 set "ScriptName=pngANDjpg"
+goto End
+
+:WindowsCheck
+set "ScriptName=WindowsCheck"
 goto End
 
 REM End.
