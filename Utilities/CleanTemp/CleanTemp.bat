@@ -20,7 +20,6 @@ if exist "..\..\.conf-files\Variables.conf" (
 )
 
 echo CleanTemp %CleanTemp_Version%&echo.
-set "TempDir=%TEMP%"
 goto Confirm
 
 REM Confirmation.
@@ -33,8 +32,20 @@ if /i not "%Confirmation%"=="Y" (
 )
 goto Deletion
 
-REM Deletion
+REM Deletion.
 :Deletion
+REM Temp folder.
+set "TempDir=%TEMP%"
+if "%TempDir%"=="" set "TempDir=%USERPROFILE%\AppData\Local\Temp"
+if not exist "%TempDir%" mkdir "%TempDir%"
+
+if not exist "%TempDir%\" (
+    echo [ERROR] Could not resolve a valid Temp directory.
+    pause
+    exit
+)
+
+REM Deletion.
 echo Deleting the contents of the folder "%TempDir%"...&echo.
 
 REM Files.
