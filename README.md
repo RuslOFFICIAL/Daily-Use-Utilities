@@ -11,3 +11,6 @@ There's these utilities:
 
 Dependencies:
 - Python, to run some scripts.
+
+First two numbers in version means some actual change.
+Third number means a little change.

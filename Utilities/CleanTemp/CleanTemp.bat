@@ -26,7 +26,7 @@ REM Confirmation.
 :Confirm
 set /p "Confirmation=Are you sure you want to run this script? (Y/n) "
 if /i not "%Confirmation%"=="Y" (
-	echo Operation cancelled by user.
+	echo.&echo Operation cancelled by user.
 	pause
 	exit
 )
