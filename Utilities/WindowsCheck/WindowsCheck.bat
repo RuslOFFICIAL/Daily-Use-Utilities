@@ -36,7 +36,7 @@ REM Check.
 :Check
 echo Running command "sfc /scannow"...
 sfc /scannow
-echo.&echo Running command "DISM /Online /Cleanup-Image /RestoreHealth"
+echo.&echo Running command "DISM /Online /Cleanup-Image /RestoreHealth"...
 DISM /Online /Cleanup-Image /RestoreHealth
 goto End
 
