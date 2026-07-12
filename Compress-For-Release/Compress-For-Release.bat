@@ -20,7 +20,7 @@ set "ZipFile=%ZipFolder%\DUU_%DUU_Version%.zip"
 
 echo Cleaning release folder...
 for %%f in ("%ZipFolder%\DUU_*.zip") do (
-	echo Removing old ZIP: "%%~nxf"
+	echo Removing old ZIP: "%%~nxf"...
 	del "%%f" /f /q
 )
 
