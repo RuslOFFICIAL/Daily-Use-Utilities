@@ -7,18 +7,19 @@ if exist "..\..\.conf-files\Variables.conf" (
 	for /f "usebackq eol=# tokens=1,2 delims==" %%A in ("..\..\.conf-files\Variables.conf") do set "%%A=%%~B"
 )
 
-echo folderTOzip %folderTOzip_Version%&echo.
+echo folderTOarchive %folderTOarchive_Version%&echo.
+goto UserInput
 
 REM User input.
 :UserInput
-set /p "SourceDir=Enter the directory path to zip (e.g., C:\Path\To\Folder): "
-set /p "ZipPath=Enter the destination ZIP path (e.g., C:\Path\To\Output.zip): "
+set /p "SourceDir=Enter the directory path to archive: (e.g. Path\To\Folder) "
+set /p "ArchivePath=Enter the destination .ZIP path (e.g. Path\To\File.zip): "
 goto Check
 
 REM Check.
 :Check
 if "%SourceDir%"=="" goto EmptyDir
-if "%ZipPath%"=="" goto EmptyDir
+if "%ArchivePath%"=="" goto EmptyDir
 goto Clean
 
 REM Empty directory.
@@ -28,10 +29,10 @@ goto End
 
 REM Clean up potential old file.
 :Clean
-if exist "%ZipPath%" (
+if exist "%ArchivePath%" (
     echo Attempting to remove existing file...
-    del /f /q "%ZipPath%" 2>nul
-    if exist "%ZipPath%" (
+    del /f /q "%ArchivePath%" 2>nul
+    if exist "%ArchivePath%" (
         echo [ERROR] Could not delete existing zip. Please close the file and try again.
         pause
         exit /b
@@ -42,9 +43,9 @@ goto Compress
 REM Compress.
 :Compress
 echo Compressing files...
-powershell -Command "Compress-Archive -Path '%SourceDir%' -DestinationPath '%ZipPath%' -Force"
+powershell -Command "Compress-Archive -Path '%SourceDir%' -DestinationPath '%ArchivePath%' -Force"
 if %errorlevel% EQU 0 (
-	echo.&echo Success! Created: %ZipPath%
+	echo.&echo Success! Created: %ArchivePath%
 ) else (
 	echo.&echo [ERROR] An error occurred during compression.
 )

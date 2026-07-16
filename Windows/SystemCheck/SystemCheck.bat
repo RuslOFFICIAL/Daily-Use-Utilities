@@ -19,7 +19,7 @@ if exist "..\..\.conf-files\Variables.conf" (
 	for /f "usebackq eol=# tokens=1,2 delims==" %%A in ("..\..\.conf-files\Variables.conf") do set "%%A=%%~B"
 )
 
-echo WindowsCheck %WindowsCheck_Version%&echo.
+echo SystemCheck %SystemCheck_Version%&echo.
 goto Confirm
 
 REM Confirmation.

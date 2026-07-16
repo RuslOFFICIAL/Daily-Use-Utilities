@@ -3,7 +3,7 @@ setlocal
 cd /d "%~dp0"
 
 REM Main process.
-for %%f in ("%~dp0Launcher\DUU-Launcher.bat") do (
+for %%f in ("%~dp0Windows\DUU-Launcher_Windows.bat") do (
 	echo Processing file: %%~nxf...
 	
 	REM Use PowerShell to check for and remove the block.

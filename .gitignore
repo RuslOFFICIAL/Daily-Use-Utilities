@@ -6,9 +6,6 @@ TempReleases/
 *.zip
 
 *.lnk
-!DUU-Launcher.lnk
 
 *.conf
 !Variables.conf
-
-f2z.bat
