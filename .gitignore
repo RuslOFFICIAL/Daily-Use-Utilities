@@ -4,7 +4,7 @@ TempReleases/
 
 # Files.
 *.zip
-
+*.tar.gz
 *.lnk
 
 *.conf
