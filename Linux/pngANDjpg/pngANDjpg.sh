@@ -34,7 +34,7 @@ read -r -p "Enter output directory for converted images: " OutputDir
 # Validate Directories
 if [ -z "$InputDir" ] || [ ! -d "$InputDir" ]; then
 	echo "Error: Invalid source directory."
-	read -s -n 1 -p "Press any key to exit..." && exit 1
+	read -s -p "Press [Enter] to exit..." && exit 1
 fi
 
 if [ ! -d "$OutputDir" ]; then
@@ -65,4 +65,4 @@ done
 
 # End.
 echo "" && echo "Done!"
-read -s -n 1 -p "Press any key to continue..." && exit 0
+read -s -p "Press [Enter] to continue..." && exit 0

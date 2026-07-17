@@ -40,8 +40,8 @@ echo "Running \"$ScriptName.sh\"..." & echo ""
 if [ -f "$ScriptPath" ]; then
 	bash "$ScriptPath"
 	echo "" && echo "" && echo "Done!"
-	read -s -n 1 -p "Press any key to continue..." && exit 0	
+	read -s -p "Press [Enter] to continue..." && exit 0	
 else
 	echo "Error: Script not found at $ScriptPath"
-	read -s -n 1 -p "Press any key to continue..." && exit 1
+	read -s -p "Press [Enter] to continue..." && exit 1
 fi
