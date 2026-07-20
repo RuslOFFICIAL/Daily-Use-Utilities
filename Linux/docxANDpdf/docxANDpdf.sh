@@ -13,18 +13,18 @@ if [ -f "$VARIABLES_FILE" ]; then
 	done < "$VARIABLES_FILE"
 fi
 
-echo "docxANDpdf $docxANDpdf_Version" && echo ""
+echo "docxANDpdf $docxANDpdf_Version" && echo
 
 # Menu Choice.
 while true; do
 	echo "1. DOCX to PDF" && echo "2. PDF to DOCX"
 	read -p "Insert your choice (1, 2): " choicev
 	[[ "$choicev" == "1" || "$choicev" == "2" ]] && break
-	echo "Invalid choice, please try again." && echo ""
+	echo "Invalid choice, please try again." && echo
 done
 
 # User Input.
-echo ""
+echo
 read -r -p "Enter the source directory with input files: " InputDir
 read -r -p "Enter the output directory for output files: " OutputDir
 
@@ -70,5 +70,5 @@ else
 fi
 
 # End.
-echo "" && echo "Done!"
+echo && echo "Done!"
 read -s -p "Press [Enter] to continue..." && exit 0

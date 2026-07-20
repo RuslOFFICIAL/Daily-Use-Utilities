@@ -13,7 +13,7 @@ if [ -f "$VARIABLES_FILE" ]; then
 	done < "$VARIABLES_FILE"
 fi
 
-echo "Linux-TARGZ $DUU_Version" && echo ""
+echo "Linux-TARGZ $DUU_Version" && echo
 
 # Paths
 SOURCE_DIR=".."
@@ -51,6 +51,6 @@ tar -czf "$ZIP_FILE" -C "$STAGING_DIR" .
 echo "Done!" && echo -n "Cleaning up temporary folders... "
 rm -rf "$STAGING_DIR"
 
-echo "Done!" && echo "" && echo "Done!"
+echo "Done!" && echo && echo "Done!"
 echo "Your release is ready inside the 'Releases' folder."
 read -s -p "Press [Enter] to continue..." && exit 0

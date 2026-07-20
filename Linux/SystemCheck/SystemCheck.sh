@@ -19,7 +19,7 @@ if [ -f "$VARIABLES_FILE" ]; then
 	done < "$VARIABLES_FILE"
 fi
 
-echo "SystemCheck $SystemCheck_Version" && echo ""
+echo "SystemCheck $SystemCheck_Version" && echo
 
 # Confirmation.
 while true; do
@@ -53,5 +53,5 @@ elif command -v pacman &> /dev/null; then
 fi
 
 # End.
-echo "" && echo "Done!"
+echo && echo "Done!"
 read -s -p "Press [Enter] to continue..." && exit 0

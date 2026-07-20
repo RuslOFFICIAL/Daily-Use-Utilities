@@ -13,7 +13,7 @@ if [ -f "$VARIABLES_FILE" ]; then
 	done < "$VARIABLES_FILE"
 fi
 
-echo "folderTOarchive $folderTOarchive_Version" && echo ""
+echo "folderTOarchive $folderTOarchive_Version" && echo
 
 # User Input
 read -r -p "Enter the directory path to archive (e.g. /Path/To/Folder): " SourceDir
@@ -39,7 +39,7 @@ echo "Compressing files..."
 if tar -czvf "$ArchivePath" -C "$(dirname "$SourceDir")" "$(basename "$SourceDir")"; then
 	echo && echo "Success! Created: $ArchivePath"
 else
-	echo "" && echo "[ERROR] An error occurred during compression."
+	echo && echo "[ERROR] An error occurred during compression."
 fi
 
 # End.

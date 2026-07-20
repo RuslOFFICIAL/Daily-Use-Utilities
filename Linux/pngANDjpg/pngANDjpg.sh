@@ -13,7 +13,7 @@ if [ -f "$VARIABLES_FILE" ]; then
 	done < "$VARIABLES_FILE"
 fi
 
-echo "pngANDjpg $pngANDjpg_Version" && echo ""
+echo "pngANDjpg $pngANDjpg_Version" && echo
 
 # Menu Selection.
 while true; do
@@ -22,12 +22,12 @@ while true; do
 	case "$choice" in
 		1) ext="png"; target="jpg"; break ;;
 		2) ext="jpg"; target="png"; break ;;
-		*) echo "Invalid choice, please try again."; echo "" ;;
+		*) echo "Invalid choice, please try again."; echo ;;
 	esac
 done
 
 # User Input.
-echo ""
+echo
 read -r -p "Enter source directory with images: " InputDir
 read -r -p "Enter output directory for converted images: " OutputDir
 
@@ -44,7 +44,7 @@ if [ ! -d "$OutputDir" ]; then
 fi
 
 # Convert.
-echo "" && echo "Converting .$ext to .$target..."
+echo && echo "Converting .$ext to .$target..."
 for f in "$InputDir"/*."$ext"; do
 	[ -f "$f" ] || continue
 	
@@ -64,5 +64,5 @@ for f in "$InputDir"/*."$ext"; do
 done
 
 # End.
-echo "" && echo "Done!"
+echo && echo "Done!"
 read -s -p "Press [Enter] to continue..." && exit 0

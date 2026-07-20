@@ -19,7 +19,7 @@ if [ -f "$VARIABLES_FILE" ]; then
 	done < "$VARIABLES_FILE"
 fi
 
-echo "CleanTemp $CleanTemp_Version" && echo ""
+echo "CleanTemp $CleanTemp_Version" && echo
 
 # Confirmation.
 while true; do
@@ -40,5 +40,5 @@ echo "Deleting the contents of the folder \"$TEMP_DIR\"..."
 find "$TEMP_DIR" -mindepth 1 -delete
 
 # End.
-echo "" && echo "Done!"
+echo && echo "Done!"
 read -s -p "Press [Enter] to continue..." && exit 0

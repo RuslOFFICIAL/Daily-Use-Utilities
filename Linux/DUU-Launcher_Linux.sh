@@ -13,12 +13,12 @@ if [ -f "$VARIABLES_FILE" ]; then
 	done < "$VARIABLES_FILE"
 fi
 
-echo "DUU-Launcher $DUU_Version" && echo ""
+echo "DUU-Launcher $DUU_Version" && echo
 
 # Menu selection
 echo "What script would you like to run?"
 echo "[1] CleanTemp" && echo "[2] docxANDpdf" && echo "[3] folderTOarchive" && echo "[4] pngANDjpg" && echo "[5] SystemCheck"
-echo ""
+echo
 
 while true; do
 	read -p "Enter your choice (1, 2, 3, 4, 5): " choice
@@ -35,11 +35,11 @@ done
 # Execute the target script.
 ScriptPath="$ScriptName/$ScriptName.sh"
 
-echo "Running \"$ScriptName.sh\"..." & echo ""
+echo "Running \"$ScriptName.sh\"..." & echo
 
 if [ -f "$ScriptPath" ]; then
 	bash "$ScriptPath"
-	echo "" && echo "" && echo "Done!"
+	echo && echo && echo "Done!"
 	read -s -p "Press [Enter] to continue..." && exit 0	
 else
 	echo "Error: Script not found at $ScriptPath"
