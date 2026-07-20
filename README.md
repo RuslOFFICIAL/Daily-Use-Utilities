@@ -5,7 +5,7 @@ Yes, just like that. :3
 There's these utilities:
 - CleanTemp to clean the Temp folder.
 - docxANDpdf to convert .docx file to .pdf file or .pdf file to .docx file.
-- folderTOzip to convert folder to .zip file
+- folderTOarchive to convert folder to an archive file.
 - pngANDjpg to convert .png file to .jpg file or .jpg file to .png file.
 - SystemCheck to check and repair System files.
 
