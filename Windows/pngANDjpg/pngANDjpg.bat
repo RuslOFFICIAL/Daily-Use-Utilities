@@ -35,8 +35,8 @@ if "%choice%"=="1" (
 
 REM User input.
 :UserInput
-set /p InputDir="Enter source directory with images: "
-set /p OutputDir="Enter output directory for converted images: "
+set /p InputDir="Enter source directory with images (e.g. C:\Path\To\Input-Folder): "
+set /p OutputDir="Enter output directory for converted images (e.g. C:\Path\To\Output-Folder): "
 
 REM Check directories.
 if "%InputDir%"=="" goto EmptyDir

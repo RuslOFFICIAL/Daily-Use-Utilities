@@ -18,8 +18,8 @@ goto UserInput
 
 REM User input.
 :UserInput
-set /p InputDir="Enter the source directory with input files (e.g. C:\Path\To\Input\Files): "
-set /p OutputDir="Enter the output directory for output files (e.g. C:\Path\To\Output\Files): "
+set /p InputDir="Enter the source directory with input files (e.g. C:\Path\To\Input-Folder): "
+set /p OutputDir="Enter the output directory for output files (e.g. C:\Path\To\Output-Folder): "
 goto CheckDir
 
 REM Check directory.

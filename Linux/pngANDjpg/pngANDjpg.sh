@@ -28,8 +28,8 @@ done
 
 # User Input.
 echo
-read -r -p "Enter source directory with images: " InputDir
-read -r -p "Enter output directory for converted images: " OutputDir
+read -r -p "Enter source directory with images (e.g /Path/To/Input-Folder): " InputDir
+read -r -p "Enter output directory for converted images (e.g. /Path/To/Output-Folder): " OutputDir
 
 # Validate Directories
 if [ -z "$InputDir" ] || [ ! -d "$InputDir" ]; then

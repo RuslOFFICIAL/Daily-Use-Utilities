@@ -25,8 +25,8 @@ done
 
 # User Input.
 echo
-read -r -p "Enter the source directory with input files: " InputDir
-read -r -p "Enter the output directory for output files: " OutputDir
+read -r -p "Enter the source directory with input files (e.g. /Path/To/Input-Folder): " InputDir
+read -r -p "Enter the output directory for output files (e.g. /Path/To/Output-Folder): " OutputDir
 
 # Validate and Prepare Directories.
 if [ -z "$InputDir" ] || [ ! -d "$InputDir" ]; then
