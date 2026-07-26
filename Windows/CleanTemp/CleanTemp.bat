@@ -49,11 +49,11 @@ REM Deletion.
 echo Deleting the contents of the folder "%TempDir%"...&echo.
 
 REM Files.
-echo Files
+echo Files:
 del /q /s "%TempDir%\*"
 
 REM Directories.
-echo.&echo Directories
+echo.&echo Directories:
 for /d %%d in ("%TempDir%\*") do (
 	echo Deleting directory: %%~nxd
 	rd /s /q "%%d"
