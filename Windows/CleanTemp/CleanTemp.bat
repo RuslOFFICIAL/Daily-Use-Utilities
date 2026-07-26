@@ -30,7 +30,7 @@ if /i not "%Confirmation%"=="Y" (
 	pause
 	exit
 )
-goto Deletion
+echo. && goto Deletion
 
 REM Deletion.
 :Deletion

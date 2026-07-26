@@ -25,9 +25,9 @@ echo "CleanTemp $CleanTemp_Version" && echo
 while true; do
 	read -p "Are you sure you want to run this script? (Y/n) " confirmation
 	case "$confirmation" in
-		[Yy]* ) break ;;
-		[Nn]* ) echo "Operation cancelled by user."; read -s -p "Press [Enter] to continue..."; exit 0 ;;
-		* ) echo "Please answer Y or n." ;;
+		[Yy]* ) echo; break ;;
+		[Nn]* ) echo; echo "Operation cancelled by user."; read -s -p "Press [Enter] to continue..."; exit 0 ;;
+		* ) echo "Please answer Y or n."; echo ;;
 	esac
 done
 
