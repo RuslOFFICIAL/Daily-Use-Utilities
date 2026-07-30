@@ -3,8 +3,8 @@ cd /d "%~dp0"
 setlocal
 
 REM .conf files.
-if exist "..\..\.conf-files\Variables.conf" (
-	for /f "usebackq eol=# tokens=1,2 delims==" %%A in ("..\..\.conf-files\Variables.conf") do set "%%A=%%~B"
+if exist "..\..\Conf-Files\Variables.conf" (
+	for /f "usebackq eol=# tokens=1,2 delims==" %%A in ("..\..\Conf-Files\Variables.conf") do set "%%A=%%~B"
 )
 
 echo folderTOarchive %folderTOarchive_Version%&echo.

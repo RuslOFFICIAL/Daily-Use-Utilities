@@ -2,7 +2,7 @@
 cd "$(dirname "$0")" || exit
 
 # Variables.
-VARIABLES_FILE="../.conf-files/Variables.conf"
+VARIABLES_FILE="../Conf-Files/Variables.conf"
 
 # .conf files.
 if [ -f "$VARIABLES_FILE" ]; then
@@ -32,7 +32,7 @@ shopt -s dotglob
 for item in ../*; do
 	name=$(basename "$item")
 	
-	if [[ "$name" == "TempReleaseLinux" || "$name" == "TempReleaseWin" || "$name" == "Releases" || "$name" == ".git" || "$name" == ".conf-files" || "$name" == "Windows" || "$name" == *.lnk || "$name" == DUU-Windows.bat ]]; then
+	if [[ "$name" == "TempReleaseLinux" || "$name" == "TempReleaseWin" || "$name" == "Releases" || "$name" == ".git" || "$name" == "Conf-Files" || "$name" == "Windows" || "$name" == *.lnk || "$name" == DUU-Windows.bat ]]; then
 		continue
 	fi
 
@@ -41,8 +41,8 @@ done
 shopt -u dotglob
 
 echo "Done!" && echo -n "Including 'Variables.conf' in release... "
-mkdir -p "$STAGING_DIR/.conf-files"
-cp "$VARIABLES_FILE" "$STAGING_DIR/.conf-files/"
+mkdir -p "$STAGING_DIR/Conf-files"
+cp "$VARIABLES_FILE" "$STAGING_DIR/Conf-files/"
 
 echo "Done!" && echo -n "Compressing into .tar.gz file... "
 mkdir -p "$ZIP_FOLDER"
