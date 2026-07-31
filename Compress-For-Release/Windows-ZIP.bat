@@ -2,9 +2,13 @@
 cd /d "%~dp0"
 setlocal
 
-REM .conf files.
-if exist "..\Conf-files\Variables.conf" (
-	for /f "usebackq eol=# tokens=1,2 delims==" %%A in ("..\Conf-Files\Variables.conf") do set "%%A=%%~B"
+REM Variables.
+set "VariablesFileName=Variables.conf"
+set "VariablesFile=..\Configs\%VariablesFileName%"
+
+REM Configs.
+if exist "%VariablesFile%" (
+	for /f "usebackq eol=# tokens=1,2 delims==" %%A in ("%VariablesFile%") do set "%%A=%%~B"
 )
 
 echo Windows-ZIP %DUU_Version%&echo.
@@ -15,6 +19,7 @@ REM Compressing process.
 REM Define paths relative to the script location.
 set "SourceDir=%~dp0.."
 set "StagingDir=%~dp0..\TempReleaseWin"
+set "ConfigsDir=%StagingDir%\Configs"
 set "ZipFolder=%~dp0..\Releases"
 set "ZipFile=%ZipFolder%\DUU_%DUU_Version%-Windows.zip"
 
@@ -24,12 +29,12 @@ for %%f in ("%ZipFolder%\DUU_*-Windows.zip") do (
 	del "%%f" /f /q
 )
 
-echo Preparing release folder (excluding all .conf files)...
-robocopy "%SourceDir%" "%StagingDir%" /E /XF *.conf *.lnk DUU-Linux.sh /XD TempReleaseWin TempReleaseLinux Releases .git Linux
+echo Preparing release folder...
+robocopy "%SourceDir%" "%StagingDir%" /E /XF *.conf *.lnk DUU-Linux.sh /XD TempReleaseWin TempReleaseLinux Releases .git Linux Configs
 
-echo Including 'Variables.conf' in release...
-if not exist "%StagingDir%\Conf-Files" mkdir "%StagingDir%\Conf-Files"
-copy "..\Conf-Files\Variables.conf" "%StagingDir%\Conf-Files\"
+echo Including '%VariablesFileName%' in release...
+if not exist "%ConfigsDir%" mkdir "%ConfigsDir%"
+copy "%VariablesFile%" "%ConfigsDir%"
 
 echo.&echo Compressing into .zip file...
 REM Create the output directory if it doesn't exist.

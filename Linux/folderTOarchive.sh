@@ -2,7 +2,7 @@
 cd "$(dirname "$0")" || exit
 
 # Variables.
-VARIABLES_FILE="../../Conf-Files/Variables.conf"
+VARIABLES_FILE="../Configs/Variables.conf"
 
 # .conf files.
 if [ -f "$VARIABLES_FILE" ]; then
@@ -21,7 +21,7 @@ read -r -p "Enter the destination .TAR.GZ path (e.g. /Path/To/File.tar.gz): " Ar
 
 # Check and Clean.
 if [ -z "$SourceDir" ] || [ -z "$ArchivePath" ]; then
-	echo "No valid directory or output path was provided."
+	echo "No valid directory or output path was provided." && echo
 	read -s -p "Press [Enter] to exit..." && exit 1
 fi
 
@@ -29,7 +29,7 @@ if [ -f "$ArchivePath" ]; then
 	echo "Removing existing file..."
 	rm -f "$ArchivePath"
 	if [ -f "$ArchivePath" ]; then
-		echo "[ERROR] Could not delete existing archive. Please check permissions."
+		echo "[ERROR] Could not delete existing archive. Please check permissions." && echo
 		read -s -p "Press [Enter] to exit..." && exit 1
 	fi
 fi

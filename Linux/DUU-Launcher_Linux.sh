@@ -2,7 +2,7 @@
 cd "$(dirname "$0")" || exit
 
 # Variables.
-VARIABLES_FILE="../Conf-files/Variables.conf"
+VARIABLES_FILE="../Configs/Variables.conf"
 
 # .conf files.
 if [ -f "$VARIABLES_FILE" ]; then
@@ -33,12 +33,12 @@ while true; do
 done
 
 # Execute the target script.
-ScriptPath="$ScriptName/$ScriptName.sh"
+ScriptPath="$ScriptName.sh"
 
 echo "Running \"$ScriptName.sh\"..." & echo
 
 if [ -f "$ScriptPath" ]; then
-	bash "$ScriptPath"
+	echo && bash "$ScriptPath"
 	echo && echo && echo "Done!"
 	read -s -p "Press [Enter] to continue..." && exit 0	
 else

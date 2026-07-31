@@ -2,9 +2,13 @@
 cd /d "%~dp0"
 setlocal
 
-REM .conf files.
-if exist "..\..\Conf-Files\Variables.conf" (
-	for /f "usebackq eol=# tokens=1,2 delims==" %%A in ("..\..\Conf-Files\Variables.conf") do set "%%A=%%~B"
+REM Variables.
+set "VariablesFileName=Variables.conf"
+set "VariablesFile=..\..\Configs\%VariablesFileName%"
+
+REM Configs.
+if exist "%VariablesFile%" (
+	for /f "usebackq eol=# tokens=1,2 delims==" %%A in ("%VariablesFile%") do set "%%A=%%~B"
 )
 
 echo pngANDjpg %pngANDjpg_Version%& echo.
@@ -13,12 +17,12 @@ REM Check if Pillow is installed.
 python -c "import PIL" >nul 2>&1
 if %errorlevel% NEQ 0 (
 	echo Pillow not found. Attempting installation...
-	python -m pip install Pillow&echo.
+	python -m pip install Pillow& echo.
 )
 
 :Menu
 REM Images convertation choice.
-echo 1. PNG to JPG&echo 2. JPG to PNG
+echo 1. PNG to JPG& echo 2. JPG to PNG
 set /p choice="Insert your choice (1, 2): "
 
 if "%choice%"=="1" (

@@ -2,9 +2,13 @@
 cd /d "%~dp0"
 setlocal
 
-REM .conf files.
-if exist "..\Conf-Files\Variables.conf" (
-	for /f "usebackq eol=# tokens=1,2 delims==" %%A in ("..\Conf-Files\Variables.conf") do set "%%A=%%~B"
+REM Variables.
+set "VariablesFileName=Variables.conf"
+set "VariablesFile=..\..\Configs\%VariablesFileName%"
+
+REM Configs.
+if exist "%VariablesFile%" (
+	for /f "usebackq eol=# tokens=1,2 delims==" %%A in ("%VariablesFile%") do set "%%A=%%~B"
 )
 
 echo Compress-For-Release_Win %DUU_Version%&echo.

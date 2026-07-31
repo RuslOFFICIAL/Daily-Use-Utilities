@@ -8,7 +8,7 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 # Variables.
-VARIABLES_FILE="../../Conf-Files/Variables.conf"
+VARIABLES_FILE="../Configs/Variables.conf"
 
 # .conf files.
 if [ -f "$VARIABLES_FILE" ]; then
@@ -19,25 +19,38 @@ if [ -f "$VARIABLES_FILE" ]; then
 	done < "$VARIABLES_FILE"
 fi
 
-echo "CleanTemp $CleanTemp_Version" && echo
+echo "SystemCheck $SystemCheck_Version" && echo
 
 # Confirmation.
 while true; do
 	read -p "Are you sure you want to run this script? (Y/n) " confirmation
 	case "$confirmation" in
 		[Yy]* ) echo; break ;;
-		[Nn]* ) echo; echo "Operation cancelled by user."; read -s -p "Press [Enter] to continue..."; exit 0 ;;
+		[Nn]* ) echo; echo "Operation cancelled by user."; echo; read -s -p "Press [Enter] to continue..."; exit 0 ;;
 		* ) echo "Please answer Y or n."; echo ;;
 	esac
 done
 
-# Deletion.
-TEMP_DIR="/tmp"
+# Integrity Checks.
+echo "Running system integrity checks..."
 
-echo "Deleting the contents of the folder \"$TEMP_DIR\"..."
+# Debian/Ubuntu systems.
+if command -v apt &> /dev/null; then
+	echo "Updating package lists..."
+	apt update
+	
+	echo "Verifying installed packages (debsums)..."
+	if command -v debsums &> /dev/null; then
+		debsums -c 
+	else
+		echo "Please install 'debsums' to run integrity verification."
+	fi
 
-# Delete files and directories.
-find "$TEMP_DIR" -mindepth 1 -delete
+# Arch-based systems.
+elif command -v pacman &> /dev/null; then
+	echo "Checking package integrity..."
+	pacman -Qkk
+fi
 
 # End.
 echo && echo "Done!"

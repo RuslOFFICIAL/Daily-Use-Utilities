@@ -2,7 +2,7 @@
 cd "$(dirname "$0")" || exit
 
 # Variables.
-VARIABLES_FILE="../../Conf-Files/Variables.conf"
+VARIABLES_FILE="../Configs/Variables.conf"
 
 # .conf files.
 if [ -f "$VARIABLES_FILE" ]; then
@@ -33,7 +33,7 @@ read -r -p "Enter output directory for converted images (e.g. /Path/To/Output-Fo
 
 # Validate Directories
 if [ -z "$InputDir" ] || [ ! -d "$InputDir" ]; then
-	echo "Error: Invalid source directory."
+	echo "Error: Invalid source directory." && echo
 	read -s -p "Press [Enter] to exit..." && exit 1
 fi
 

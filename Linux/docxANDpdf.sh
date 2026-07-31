@@ -2,7 +2,7 @@
 cd "$(dirname "$0")" || exit
 
 # Variables.
-VARIABLES_FILE="../../Conf-Files/Variables.conf"
+VARIABLES_FILE="../Configs/Variables.conf"
 
 # .conf files.
 if [ -f "$VARIABLES_FILE" ]; then
@@ -30,7 +30,7 @@ read -r -p "Enter the output directory for output files (e.g. /Path/To/Output-Fo
 
 # Validate and Prepare Directories.
 if [ -z "$InputDir" ] || [ ! -d "$InputDir" ]; then
-	echo "Error: Source directory does not exist."
+	echo "Error: Source directory does not exist." && echo
 	read -s -p "Press [Enter] to exit..." && exit 1
 fi
 

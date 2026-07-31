@@ -2,12 +2,16 @@
 cd /d "%~dp0"
 setlocal
 
-REM .conf files.
-if exist "..\..\Conf-Files\Variables.conf" (
-	for /f "usebackq eol=# tokens=1,2 delims==" %%A in ("..\..\Conf-Files\Variables.conf") do set "%%A=%%~B"
+REM Variables.
+set "VariablesFileName=Variables.conf"
+set "VariablesFile=..\Configs\%VariablesFileName%"
+
+REM Configs.
+if exist "%VariablesFile%" (
+	for /f "usebackq eol=# tokens=1,2 delims==" %%A in ("%VariablesFile%") do set "%%A=%%~B"
 )
 
-echo docxANDpdf %docxANDpdf_Version%&echo.
+echo docxANDpdf %docxANDpdf_Version%& echo.
 goto Choice
 
 REM Choice.
@@ -60,8 +64,7 @@ if %errorlevel% NEQ 0 (
 	REM Verify installation again.
 	where docx2pdf >nul 2>&1
 	if %errorlevel% NEQ 0 (
-		echo Installation failed or command not found.
-		echo Please ensure Python is added to your PATH.
+		echo Installation failed or command not found.& echo Please ensure Python is added to your PATH.& echo.
 		pause
 		exit /b
 	)
@@ -91,10 +94,8 @@ if %errorlevel% NEQ 0 (
 	REM Verify installation again.
 	python -c "import pdf2docx" >nul 2>&1
 	if %errorlevel% NEQ 0 (
-		echo Installation failed or command not found.
-		echo Please ensure Python is added to your PATH.
-		pause
-		exit /b
+		echo Installation failed or command not found.& echo Please ensure Python is added to your PATH.& echo.
+		pause& exit /b
 	)
 ) else (
 	echo pdf2docx has been found.
