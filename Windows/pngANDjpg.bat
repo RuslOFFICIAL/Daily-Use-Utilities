@@ -4,7 +4,7 @@ setlocal
 
 REM Variables.
 set "VariablesFileName=Variables.conf"
-set "VariablesFile=..\..\Configs\%VariablesFileName%"
+set "VariablesFile=..\Configs\%VariablesFileName%"
 
 REM Configs.
 if exist "%VariablesFile%" (
