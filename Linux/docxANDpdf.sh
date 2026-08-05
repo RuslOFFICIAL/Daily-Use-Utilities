@@ -18,15 +18,15 @@ echo "docxANDpdf $docxANDpdf_Version" && echo
 # Menu Choice.
 while true; do
 	echo "1. DOCX to PDF" && echo "2. PDF to DOCX"
-	read -p "Insert your choice (1, 2): " choicev
+	read -r -e -p "Insert your choice (1, 2): " choicev
 	[[ "$choicev" == "1" || "$choicev" == "2" ]] && break
 	echo "Invalid choice, please try again." && echo
 done
 
 # User Input.
 echo
-read -r -p "Enter the source directory with input files (e.g. /Path/To/Input-Folder): " InputDir
-read -r -p "Enter the output directory for output files (e.g. /Path/To/Output-Folder): " OutputDir
+read -r -e -p "Enter the source directory with input files (e.g. /Path/To/Input-Folder): " InputDir
+read -r -e -p "Enter the output directory for output files (e.g. /Path/To/Output-Folder): " OutputDir
 
 # Validate and Prepare Directories.
 if [ -z "$InputDir" ] || [ ! -d "$InputDir" ]; then

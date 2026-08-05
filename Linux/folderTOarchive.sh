@@ -16,8 +16,8 @@ fi
 echo "folderTOarchive $folderTOarchive_Version" && echo
 
 # User Input
-read -r -p "Enter the directory path to archive (e.g. /Path/To/Folder): " SourceDir
-read -r -p "Enter the destination .TAR.GZ path (e.g. /Path/To/File.tar.gz): " ArchivePath
+read -r -e -p "Enter the directory path to archive (e.g. /Path/To/Folder): " SourceDir
+read -r -e -p "Enter the destination .TAR.GZ path (e.g. /Path/To/File.tar.gz): " ArchivePath
 
 # Check and Clean.
 if [ -z "$SourceDir" ] || [ -z "$ArchivePath" ]; then

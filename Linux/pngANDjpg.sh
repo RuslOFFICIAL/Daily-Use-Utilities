@@ -18,7 +18,7 @@ echo "pngANDjpg $pngANDjpg_Version" && echo
 # Menu Selection.
 while true; do
 	echo "1. PNG to JPG" && echo "2. JPG to PNG"
-	read -p "Insert your choice (1, 2): " choice
+	read -r -e -p "Insert your choice (1, 2): " choice
 	case "$choice" in
 		1) ext="png"; target="jpg"; break ;;
 		2) ext="jpg"; target="png"; break ;;
@@ -28,8 +28,8 @@ done
 
 # User Input.
 echo
-read -r -p "Enter source directory with images (e.g /Path/To/Input-Folder): " InputDir
-read -r -p "Enter output directory for converted images (e.g. /Path/To/Output-Folder): " OutputDir
+read -r -e -p "Enter source directory with images (e.g /Path/To/Input-Folder): " InputDir
+read -r -e -p "Enter output directory for converted images (e.g. /Path/To/Output-Folder): " OutputDir
 
 # Validate Directories
 if [ -z "$InputDir" ] || [ ! -d "$InputDir" ]; then

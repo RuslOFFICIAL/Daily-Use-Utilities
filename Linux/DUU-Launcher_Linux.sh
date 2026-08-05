@@ -21,7 +21,7 @@ echo "[1] CleanTemp" && echo "[2] docxANDpdf" && echo "[3] folderTOarchive" && e
 echo
 
 while true; do
-	read -p "Enter your choice (1, 2, 3, 4, 5): " choice
+	read -r -e -p "Enter your choice (1, 2, 3, 4, 5): " choice
 	case $choice in
 		1) ScriptName="CleanTemp"; break ;;
 		2) ScriptName="docxANDpdf"; break ;;
