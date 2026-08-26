@@ -1,6 +1,6 @@
 # Folders.
 Releases/
-TempReleases/
+TempRelease*/
 
 # Files.
 *.zip
