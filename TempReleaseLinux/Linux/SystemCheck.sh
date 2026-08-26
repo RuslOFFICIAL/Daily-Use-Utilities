@@ -8,8 +8,7 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 # Variables.
-VARIABLES_FILE_NAME="Variables.conf"
-VARIABLES_FILE="../Configs/$VARIABLES_FILE_NAME"
+VARIABLES_FILE="../Configs/Variables.conf"
 
 # .conf files.
 if [ -f "$VARIABLES_FILE" ]; then

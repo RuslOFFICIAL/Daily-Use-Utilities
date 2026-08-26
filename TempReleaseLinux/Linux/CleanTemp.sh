@@ -8,8 +8,7 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 # Variables.
-VARIABLES_FILE_NAME="Variables.conf"
-VARIABLES_FILE="../Configs/$VARIABLES_FILE_NAME"
+VARIABLES_FILE="../Configs/Variables.conf"
 
 # .conf files.
 if [ -f "$VARIABLES_FILE" ]; then
@@ -20,7 +19,7 @@ if [ -f "$VARIABLES_FILE" ]; then
 	done < "$VARIABLES_FILE"
 fi
 
-echo "SystemCheck $SystemCheck_Version" && echo
+echo "CleanTemp $CleanTemp_Version" && echo
 
 # Confirmation.
 while true; do
@@ -32,26 +31,13 @@ while true; do
 	esac
 done
 
-# Integrity Checks.
-echo "Running system integrity checks..."
+# Deletion.
+TEMP_DIR="/tmp"
 
-# Debian/Ubuntu systems.
-if command -v apt &> /dev/null; then
-	echo "Updating package lists..."
-	apt update
-	
-	echo "Verifying installed packages (debsums)..."
-	if command -v debsums &> /dev/null; then
-		debsums -c 
-	else
-		echo "Please install 'debsums' to run integrity verification."
-	fi
+echo "Deleting the contents of the folder \"$TEMP_DIR\"..."
 
-# Arch-based systems.
-elif command -v pacman &> /dev/null; then
-	echo "Checking package integrity..."
-	pacman -Qkk
-fi
+# Delete files and directories.
+find "$TEMP_DIR" -mindepth 1 -delete
 
 # End.
 echo && echo "Done!"
