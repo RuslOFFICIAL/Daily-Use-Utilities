@@ -10,8 +10,10 @@ if [ -f "$VARIABLES_FILE" ]; then
 	while IFS='=' read -r key value; do
 		[[ "$key" =~ ^#.* ]] || [[ -z "$key" ]] && continue
 		clean_value="${value%$'\r'}"
-		export "$key=$value"
+		export "$key=$clean_value"
 	done < "$VARIABLES_FILE"
+else
+	echo "Warning: File not found at '$VARIABLES_FILE'!" && echo "Check if you have that file or download it from GitHub repository!" && echo
 fi
 
 echo "Linux-TARGZ $DUU_Version" && echo
