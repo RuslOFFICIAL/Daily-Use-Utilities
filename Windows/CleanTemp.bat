@@ -1,6 +1,6 @@
 @echo off
 cd /d "%~dp0"
-setlocal
+setlocal enabledelayedexpansion
 
 REM Admin check.
 net session >nul 2>&1
@@ -17,6 +17,7 @@ REM Getting ready.
 REM Variables.
 set "VariablesFileName=Variables.conf"
 set "VariablesFile=..\Configs\%VariablesFileName%"
+set "CacheFile=%~dp0CleanTemp_Cache.tmp"
 
 REM Configs.
 if exist "%VariablesFile%" (
@@ -49,6 +50,14 @@ if not exist "%TempDir%\" (
     pause& exit
 )
 
+REM Scan initial stats before deletion.
+setlocal disabledelayedexpansion
+powershell -NoProfile -Command "$culture = [System.Globalization.CultureInfo]::InvariantCulture; $f = Get-ChildItem -Path $env:TempDir -Recurse -Force -ErrorAction SilentlyContinue; $files = @($f | Where-Object {!$_.PSIsContainer}); $dirs = @($f | Where-Object {$_.PSIsContainer}); $size = ($files | Measure-Object -Property Length -Sum).Sum; if(!$size){$size=0}; $mb = [Math]::Round($size / 1MB, 2); \"InitialMB=$($mb.ToString($culture))\"; \"InitialFiles=$($files.Count)\"; \"InitialDirs=$($dirs.Count)\"" > "%CacheFile%"
+endlocal
+
+for /f "tokens=*" %%i in ('type "%CacheFile%"') do set "%%i"
+del "%CacheFile%" >nul 2>&1
+
 REM Deletion.
 echo Deleting the contents of the folder "%TempDir%"...& echo.
 
@@ -60,12 +69,39 @@ REM Directories.
 echo.& echo Directories:
 for /d %%d in ("%TempDir%\*") do (
 	echo Deleting directory: %%~nxd
-	rd /s /q "%%d"
+	rd /s /q "%%d" >nul 2>&1
 )
+
+REM Scan remaining stats after deletion.
+setlocal disabledelayedexpansion
+powershell -NoProfile -Command "$culture = [System.Globalization.CultureInfo]::InvariantCulture; $f = Get-ChildItem -Path $env:TempDir -Recurse -Force -ErrorAction SilentlyContinue; $files = @($f | Where-Object {!$_.PSIsContainer}); $dirs = @($f | Where-Object {$_.PSIsContainer}); $size = ($files | Measure-Object -Property Length -Sum).Sum; if(!$size){$size=0}; $mb = [Math]::Round($size / 1MB, 2); \"RemainMB=$($mb.ToString($culture))\"; \"RemainFiles=$($files.Count)\"; \"RemainDirs=$($dirs.Count)\"" > "%CacheFile%"
+endlocal
+
+for /f "tokens=*" %%i in ('type "%CacheFile%"') do set "%%i"
+del "%CacheFile%" >nul 2>&1
+
+if "%InitialMB%"=="" set "InitialMB=0"
+if "%InitialFiles%"=="" set "InitialFiles=0"
+if "%InitialDirs%"=="" set "InitialDirs=0"
+if "%RemainMB%"=="" set "RemainMB=0"
+if "%RemainFiles%"=="" set "RemainFiles=0"
+if "%RemainDirs%"=="" set "RemainDirs=0"
+
+REM Calculate actual deleted totals safely.
+setlocal disabledelayedexpansion
+powershell -NoProfile -Command "$culture = [System.Globalization.CultureInfo]::InvariantCulture; $initMB = [double]::Parse('%InitialMB%', $culture); $remMB = [double]::Parse('%RemainMB%', $culture); $delFiles = [Math]::Max(0, %InitialFiles% - %RemainFiles%); $delDirs = [Math]::Max(0, %InitialDirs% - %RemainDirs%); $delMB = [Math]::Max(0, $initMB - $remMB); \"FileCount=$delFiles\"; \"DirCount=$delDirs\"; \"FreedMB=$delMB\"" > "%CacheFile%"
+endlocal
+
+for /f "tokens=*" %%i in ('type "%CacheFile%"') do set "%%i"
+del "%CacheFile%" >nul 2>&1
+
 goto End
 
 REM End.
 :End
-endlocal
+endlocal & set "FileCount=%FileCount%" & set "DirCount=%DirCount%" & set "FreedMB=%FreedMB%"
 echo.& echo Done!
+echo Files deleted:		%FileCount%
+echo Directories removed:	%DirCount%
+echo Space freed:		%FreedMB% MB
 pause
