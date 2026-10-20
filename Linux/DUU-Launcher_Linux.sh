@@ -4,6 +4,8 @@ cd "$(dirname "$0")" || exit
 # Variables.
 VARIABLES_FILE_NAME="Variables.conf"
 VARIABLES_FILE="../Configs/$VARIABLES_FILE_NAME"
+COMMANDS_FILE_NAME="DUU-Launcher_Info.conf"
+COMMANDS_FILE="../Configs/$COMMANDS_FILE_NAME"
 
 # Configs.
 if [ -f "$VARIABLES_FILE" ]; then
@@ -16,40 +18,64 @@ else
 	echo "Warning: File not found at '$VARIABLES_FILE'!" && echo "Check if you have that file or download it from GitHub repository!" && echo
 fi
 
+if [ ! -f "$COMMANDS_FILE" ]; then
+	echo "[ERROR]: File not found at '$COMMANDS_FILE'!" && echo "Check if there is that file or follow the instruction in '$COMMANDS_FILE_NAME.example'!" && echo
+	read -s -p "Press [Enter] to continue..." && exit 1
+fi
+
 while true; do
 	echo "DUU-Launcher $DUU_Version" && echo
 	
-	# Menu selection
-	echo "What script would you like to run?"
-	echo "[0] Exit"
-	echo "[1] CleanTemp" && echo "[2] docxANDpdf" && echo "[3] folderTOarchive" && echo "[4] pngANDjpg" && echo "[5] SystemCheck"
-	echo
+	# Display options and build selection array.
+	declare -A script_map
+	options=()
 	
+	while IFS='|' read -r key label script || [[ -n "$key" ]]; do
+		script="${script%$'\r'}"
+		
+		# Skip comments or empty lines.
+		[[ "$key" =~ ^#.* ]] || [[ -z "$key" ]] && continue
+		
+		echo "[$key] $label"
+		options+=("$key")
+		script_map["$key"]="$script"
+	done < "$COMMANDS_FILE"
+	
+	# Prompt for selection.
+	if [ ${#options[@]} -eq 0 ]; then
+		echo "[ERROR]: No options found in '$COMMANDS_FILE_NAME'." && echo
+		read -s -p "Press [Enter] to continue..." && exit 1
+	fi
+	
+	echo
 	while true; do
-		read -r -e -p "Enter your choice (0, 1, 2, 3, 4, 5): " choice
-		case $choice in
-			0) echo "Exiting..." && exit 0 ;;
-			1) ScriptName="CleanTemp"; break ;;
-			2) ScriptName="docxANDpdf"; break ;;
-			3) ScriptName="folderTOarchive"; break ;;
-			4) ScriptName="pngANDjpg"; break ;;
-			5) ScriptName="SystemCheck"; break ;;
-			*) echo "Invalid choice, please try again." ;;
-		esac
+		read -r -e -p "Enter the choice ($(printf "%s, " "${options[@]}" | sed 's/, $//')): " user_choice
+		
+		if [[ " ${options[*]} " =~ " ${user_choice} " ]]; then
+			selected_script="${script_map[$user_choice]}"
+			break
+		else
+			echo "Invalid choice, please try again."
+		fi
 	done
 	
-	# Execute the target script.
-	ScriptPath="$ScriptName.sh"
-	
-	echo "Running \"$ScriptName.sh\"..." & echo
-	
-	if [ -f "$ScriptPath" ]; then
-		echo && bash "$ScriptPath"
-		echo && echo && echo "Done!"
-		read -s -p "Press [Enter] to return to the menu..."
-	else
-		echo "Error: Script not found at $ScriptPath"
-		read -s -p "Press [Enter] to return to the menu..."
+	# Exit.
+	if [[ "$selected_script" == "Exit" || "$selected_script" == "exit" ]]; then
+		echo "Exiting..."
+		exit 0
 	fi
+	
+	# Execute the selected script.
+	SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+	TARGET_SCRIPT="$SCRIPT_DIR/$selected_script.sh"
+	echo "Running \"$selected_script\"..." && echo
+	
+	if [ -f "$TARGET_SCRIPT" ]; then
+		bash "$TARGET_SCRIPT"
+	else
+		echo "[ERROR]: Could not find script at $TARGET_SCRIPT"
+	fi
+	
+	echo && echo && read -s -p "Press [Enter] to return to the menu..."
 	clear
 done
