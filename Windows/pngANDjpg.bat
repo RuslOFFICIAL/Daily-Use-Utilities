@@ -13,18 +13,18 @@ if exist "%VariablesFile%" (
 	echo Warning: File not found at '%VariablesFile%'! & echo Check if you have that file or download it from GitHub repository! & echo.
 )
 
-echo pngANDjpg %pngANDjpg_Version%& echo.
+echo pngANDjpg %pngANDjpg_Version% & echo.
 
 REM Check if Pillow is installed.
 python -c "import PIL" >nul 2>&1
 if %errorlevel% NEQ 0 (
 	echo Pillow not found. Attempting installation...
-	python -m pip install Pillow& echo.
+	python -m pip install Pillow & echo.
 )
 
 :Menu
 REM Images convertation choice.
-echo 1. PNG to JPG& echo 2. JPG to PNG
+echo 1. PNG to JPG & echo 2. JPG to PNG
 set /p choice="Insert your choice (1, 2): "
 
 if "%choice%"=="1" (
@@ -65,5 +65,5 @@ goto End
 REM End.
 :End
 endlocal
-echo.& echo Done!
+echo. & echo Done!
 pause

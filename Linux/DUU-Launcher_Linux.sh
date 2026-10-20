@@ -16,35 +16,40 @@ else
 	echo "Warning: File not found at '$VARIABLES_FILE'!" && echo "Check if you have that file or download it from GitHub repository!" && echo
 fi
 
-echo "DUU-Launcher $DUU_Version" && echo
-
-# Menu selection
-echo "What script would you like to run?"
-echo "[1] CleanTemp" && echo "[2] docxANDpdf" && echo "[3] folderTOarchive" && echo "[4] pngANDjpg" && echo "[5] SystemCheck"
-echo
-
 while true; do
-	read -r -e -p "Enter your choice (1, 2, 3, 4, 5): " choice
-	case $choice in
-		1) ScriptName="CleanTemp"; break ;;
-		2) ScriptName="docxANDpdf"; break ;;
-		3) ScriptName="folderTOarchive"; break ;;
-		4) ScriptName="pngANDjpg"; break ;;
-		5) ScriptName="SystemCheck"; break ;;
-		*) echo "Invalid choice, please try again." ;;
-	esac
+	echo "DUU-Launcher $DUU_Version" && echo
+	
+	# Menu selection
+	echo "What script would you like to run?"
+	echo "[0] Exit"
+	echo "[1] CleanTemp" && echo "[2] docxANDpdf" && echo "[3] folderTOarchive" && echo "[4] pngANDjpg" && echo "[5] SystemCheck"
+	echo
+	
+	while true; do
+		read -r -e -p "Enter your choice (0, 1, 2, 3, 4, 5): " choice
+		case $choice in
+			0) echo "Exiting..." && exit 0 ;;
+			1) ScriptName="CleanTemp"; break ;;
+			2) ScriptName="docxANDpdf"; break ;;
+			3) ScriptName="folderTOarchive"; break ;;
+			4) ScriptName="pngANDjpg"; break ;;
+			5) ScriptName="SystemCheck"; break ;;
+			*) echo "Invalid choice, please try again." ;;
+		esac
+	done
+	
+	# Execute the target script.
+	ScriptPath="$ScriptName.sh"
+	
+	echo "Running \"$ScriptName.sh\"..." & echo
+	
+	if [ -f "$ScriptPath" ]; then
+		echo && bash "$ScriptPath"
+		echo && echo && echo "Done!"
+		read -s -p "Press [Enter] to return to the menu..."
+	else
+		echo "Error: Script not found at $ScriptPath"
+		read -s -p "Press [Enter] to return to the menu..."
+	fi
+	clear
 done
-
-# Execute the target script.
-ScriptPath="$ScriptName.sh"
-
-echo "Running \"$ScriptName.sh\"..." & echo
-
-if [ -f "$ScriptPath" ]; then
-	echo && bash "$ScriptPath"
-	echo && echo && echo "Done!"
-	read -s -p "Press [Enter] to continue..." && exit 0	
-else
-	echo "Error: Script not found at $ScriptPath"
-	read -s -p "Press [Enter] to continue..." && exit 1
-fi

@@ -13,7 +13,7 @@ if exist "%VariablesFile%" (
 	echo Warning: File not found at '%VariablesFile%'! & echo Check if you have that file or download it from GitHub repository! & echo.
 )
 
-echo Windows-ZIP %DUU_Version%&echo.
+echo Windows-ZIP %DUU_Version% & echo.
 goto CompressingProc
 
 REM Compressing process.
@@ -38,7 +38,7 @@ echo Including '%VariablesFileName%' in release...
 if not exist "%ConfigsDir%" mkdir "%ConfigsDir%"
 copy "%VariablesFile%" "%ConfigsDir%"
 
-echo.&echo Compressing into .zip file...
+echo. & echo Compressing into .zip file...
 REM Create the output directory if it doesn't exist.
 if not exist "%ZipFolder%" mkdir "%ZipFolder%"
 
@@ -53,5 +53,5 @@ goto End
 REM End.
 :End
 endlocal
-echo.&echo Done!&echo Your release is ready inside the "Releases" folder.
-pause&exit
+echo. & echo Done! & echo Your release is ready inside the "Releases" folder.
+pause & exit

@@ -7,8 +7,8 @@ net session >nul 2>&1
 if %errorlevel% equ 0 (
 	goto GR
 ) else (
-	echo Failure: This script must be run as an Administrator.& echo.
-	pause& exit
+	echo Failure: This script must be run as an Administrator. & echo.
+	pause & exit /b
 )
 
 REM Getting ready.
@@ -24,15 +24,15 @@ if exist "%VariablesFile%" (
 	echo Warning: File not found at '%VariablesFile%'! & echo Check if you have that file or download it from GitHub repository! & echo.
 )
 
-echo SystemCheck %SystemCheck_Version%& echo.
+echo SystemCheck %SystemCheck_Version% & echo.
 goto Confirm
 
 REM Confirmation.
 :Confirm
 set /p "Confirmation=Are you sure you want to run this script? (Y/n) "
 if /i not "%Confirmation%"=="Y" (
-	echo.& echo Operation cancelled by user.& echo.
-	pause& exit
+	echo. & echo Operation cancelled by user. & echo.
+	pause & exit /b
 )
 goto Check
 
@@ -40,11 +40,11 @@ REM Check.
 :Check
 echo Running command "sfc /scannow"...
 sfc /scannow
-echo.& echo Running command "DISM /Online /Cleanup-Image /RestoreHealth"...
+echo. & echo Running command "DISM /Online /Cleanup-Image /RestoreHealth"...
 DISM /Online /Cleanup-Image /RestoreHealth
 goto End
 
 :End
 endlocal
-echo.& echo Done!
+echo. & echo Done!
 pause

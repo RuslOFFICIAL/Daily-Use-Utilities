@@ -13,7 +13,7 @@ if exist "%VariablesFile%" (
 	echo Warning: File not found at '%VariablesFile%'! & echo Check if you have that file or download it from GitHub repository! & echo.
 )
 
-echo Compress-For-Release_Win %DUU_Version%&echo.
+echo Compress-For-Release_Win %DUU_Version% & echo.
 
 REM Running files.
 for %%f in ("%~dp0*.*") do (
@@ -24,5 +24,5 @@ for %%f in ("%~dp0*.*") do (
 )
 
 REM End.
-echo.&echo Done!
+echo. & echo Done!
 pause

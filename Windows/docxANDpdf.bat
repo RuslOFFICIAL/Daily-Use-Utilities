@@ -13,12 +13,12 @@ if exist "%VariablesFile%" (
 	echo Warning: File not found at '%VariablesFile%'! & echo Check if you have that file or download it from GitHub repository! & echo.
 )
 
-echo docxANDpdf %docxANDpdf_Version%& echo.
+echo docxANDpdf %docxANDpdf_Version% & echo.
 goto Choice
 
 REM Choice.
 :Choice
-echo 1. DOCX to PDF&echo 2. PDF to DOCX
+echo 1. DOCX to PDF & echo 2. PDF to DOCX
 set /p choicev="Insert your choice (1, 2): "
 goto UserInput
 
@@ -66,9 +66,8 @@ if %errorlevel% NEQ 0 (
 	REM Verify installation again.
 	where docx2pdf >nul 2>&1
 	if %errorlevel% NEQ 0 (
-		echo Installation failed or command not found.& echo Please ensure Python is added to your PATH.& echo.
-		pause
-		exit /b
+		echo Installation failed or command not found. & echo Please ensure Python is added to your PATH. & echo.
+		pause & exit /b
 	)
 ) else (
 	echo docx2pdf has been found.
@@ -96,8 +95,8 @@ if %errorlevel% NEQ 0 (
 	REM Verify installation again.
 	python -c "import pdf2docx" >nul 2>&1
 	if %errorlevel% NEQ 0 (
-		echo Installation failed or command not found.& echo Please ensure Python is added to your PATH.& echo.
-		pause& exit /b
+		echo Installation failed or command not found. & echo Please ensure Python is added to your PATH. & echo.
+		pause & exit /b
 	)
 ) else (
 	echo pdf2docx has been found.
@@ -117,5 +116,5 @@ goto End
 REM End.
 :End
 endlocal
-echo.& echo Done!
+echo. & echo Done!
 pause

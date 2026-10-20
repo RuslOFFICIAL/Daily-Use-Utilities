@@ -13,7 +13,7 @@ if exist "%VariablesFile%" (
 	echo Warning: File not found at '%VariablesFile%'! & echo Check if you have that file or download it from GitHub repository! & echo.
 )
 
-echo folderTOarchive %folderTOarchive_Version%& echo.
+echo folderTOarchive %folderTOarchive_Version% & echo.
 goto UserInput
 
 REM User input.
@@ -39,8 +39,8 @@ if exist "%ArchivePath%" (
 	echo Attempting to remove existing file...
 	del /f /q "%ArchivePath%" 2>nul
 	if exist "%ArchivePath%" (
-		echo [ERROR] Could not delete existing zip. Please close the file and try again.& echo.
-		pause& exit /b
+		echo [ERROR] Could not delete existing zip. Please close the file and try again. & echo.
+		pause & exit /b
 	)
 )
 goto Compress
@@ -50,14 +50,14 @@ REM Compress.
 echo Compressing files...
 powershell -Command "Compress-Archive -Path '%SourceDir%' -DestinationPath '%ArchivePath%' -Force"
 if %errorlevel% EQU 0 (
-	echo.& echo Success! Created: %ArchivePath%
+	echo. & echo Success! Created: %ArchivePath%
 ) else (
-	echo.& echo [ERROR] An error occurred during compression.
+	echo. & echo [ERROR] An error occurred during compression.
 )
 goto End
 
 REM End.
 :End
 endlocal
-echo.& echo Done!
+echo. & echo Done!
 pause
