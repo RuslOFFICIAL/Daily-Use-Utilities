@@ -1,0 +1,18 @@
+# Format:
+# Number|ScriptName|FileName
+
+# Example:
+# 0|Exit|Exit
+# 1|CleanTemp|CleanTemp
+
+# Note:
+# Files of the scripts included in "DUU-Launcher_Info.conf" have to be in OS directory.
+# Exit option name should be either "Exit" or "exit" to make it work without changing code.
+# File name should not include file format.
+
+
+# To make it work you need:
+# 1. Create or rename this file with the name "DUU-Launcher_Info.conf" in "Configs" directory.
+# 2. Add there options following the format and example written up there.
+# 3. Run "DUU-Launcher_{OS}".
+# Or download "DUU-Launcher_Info.conf" from the GitHub repository "https://github.com/RuslOFFICIAL/Daily-Use-Utilities.git".
