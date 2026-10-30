@@ -29,7 +29,7 @@ goto Confirm
 
 REM Confirmation.
 :Confirm
-set /p "Confirmation=Are you sure you want to run this script? (Y/n) "
+set /p "Confirmation=Are you sure you want to run this script? (y/N) "
 if /i not "%Confirmation%"=="Y" (
 	echo. & echo Operation cancelled by user. & echo.
 	pause & exit /b
