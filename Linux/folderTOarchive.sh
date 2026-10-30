@@ -13,10 +13,10 @@ if [ -f "$VARIABLES_FILE" ]; then
 		export "$key=$clean_value"
 	done < "$VARIABLES_FILE"
 else
-	echo "Warning: File not found at '$VARIABLES_FILE'!" && echo "Check if you have that file or download it from GitHub repository!" && echo
+	echo "Warning: File not found at '$VARIABLES_FILE'!" && echo -e "Check if you have that file or download it from the repository!\n"
 fi
 
-echo "folderTOarchive $folderTOarchive_Version" && echo
+echo -e "folderTOarchive $folderTOarchive_Version"
 
 # User Input
 read -r -e -p "Enter the directory path to archive (e.g. /Path/To/Folder): " SourceDir
@@ -24,7 +24,7 @@ read -r -e -p "Enter the destination .TAR.GZ path (e.g. /Path/To/File.tar.gz): "
 
 # Check and Clean.
 if [ -z "$SourceDir" ] || [ -z "$ArchivePath" ]; then
-	echo "No valid directory or output path was provided." && echo
+	echo -e "No valid directory or output path was provided."
 	read -s -p "Press [Enter] to exit..." && exit 1
 fi
 
@@ -32,7 +32,7 @@ if [ -f "$ArchivePath" ]; then
 	echo "Removing existing file..."
 	rm -f "$ArchivePath"
 	if [ -f "$ArchivePath" ]; then
-		echo "[ERROR] Could not delete existing archive. Please check permissions." && echo
+		echo -e "[ERROR] Could not delete existing archive. Please check permissions."
 		read -s -p "Press [Enter] to exit..." && exit 1
 	fi
 fi

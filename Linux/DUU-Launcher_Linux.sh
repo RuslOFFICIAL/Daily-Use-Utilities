@@ -15,16 +15,16 @@ if [ -f "$VARIABLES_FILE" ]; then
 		export "$key=$clean_value"
 	done < "$VARIABLES_FILE"
 else
-	echo "Warning: File not found at '$VARIABLES_FILE'!" && echo "Check if you have that file or download it from GitHub repository!" && echo
+	echo "Warning: File not found at '$VARIABLES_FILE'!" && echo -e "Check if you have that file or download it from the repository!\n"
 fi
 
 if [ ! -f "$COMMANDS_FILE" ]; then
-	echo "[ERROR]: File not found at '$COMMANDS_FILE'!" && echo "Check if there is that file or follow the instruction in '$COMMANDS_FILE_NAME.example'!" && echo
+	echo "[ERROR]: File not found at '$COMMANDS_FILE'!" && echo -e "Check if there is that file or follow the instruction in '$COMMANDS_FILE_NAME.example'!\n"
 	read -s -p "Press [Enter] to continue..." && exit 1
 fi
 
 while true; do
-	echo "DUU-Launcher $DUU_Version" && echo
+	echo -e "DUU-Launcher $DUU_Version\n"
 	
 	# Display options and build selection array.
 	declare -A script_map
@@ -43,7 +43,7 @@ while true; do
 	
 	# Prompt for selection.
 	if [ ${#options[@]} -eq 0 ]; then
-		echo "[ERROR]: No options found in '$COMMANDS_FILE_NAME'." && echo
+		echo -e "[ERROR]: No options found in '$COMMANDS_FILE_NAME'.\n"
 		read -s -p "Press [Enter] to continue..." && exit 1
 	fi
 	
@@ -68,7 +68,7 @@ while true; do
 	# Execute the selected script.
 	SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 	TARGET_SCRIPT="$SCRIPT_DIR/$selected_script.sh"
-	echo "Running \"$selected_script\"..." && echo
+	echo -e "Running \"$selected_script\"...\n"
 	
 	if [ -f "$TARGET_SCRIPT" ]; then
 		bash "$TARGET_SCRIPT"
@@ -76,6 +76,6 @@ while true; do
 		echo "[ERROR]: Could not find script at $TARGET_SCRIPT"
 	fi
 	
-	echo -e "\n" && read -s -p "Press [Enter] to return to the menu..."
+	read -s -p $'\nPress [Enter] to return to the menu...'
 	clear
 done

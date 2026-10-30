@@ -13,17 +13,17 @@ if [ -f "$VARIABLES_FILE" ]; then
 		export "$key=$clean_value"
 	done < "$VARIABLES_FILE"
 else
-	echo "Warning: File not found at '$VARIABLES_FILE'!" && echo "Check if you have that file or download it from GitHub repository!" && echo
+	echo "Warning: File not found at '$VARIABLES_FILE'!" && echo -e "Check if you have that file or download it from the repository!\n"
 fi
 
-echo "docxANDpdf $docxANDpdf_Version" && echo
+echo -e "docxANDpdf $docxANDpdf_Version"
 
 # Menu Choice.
 while true; do
 	echo "1. DOCX to PDF" && echo "2. PDF to DOCX"
 	read -r -e -p "Insert your choice (1, 2): " choicev
 	[[ "$choicev" == "1" || "$choicev" == "2" ]] && break
-	echo "Invalid choice, please try again." && echo
+	echo -e "Invalid choice, please try again."
 done
 
 # User Input.
@@ -33,7 +33,7 @@ read -r -e -p "Enter the output directory for output files (e.g. /Path/To/Output
 
 # Validate and Prepare Directories.
 if [ -z "$InputDir" ] || [ ! -d "$InputDir" ]; then
-	echo "Error: Source directory does not exist." && echo
+	echo -e "Error: Source directory does not exist.\n"
 	read -s -p "Press [Enter] to exit..." && exit 1
 fi
 

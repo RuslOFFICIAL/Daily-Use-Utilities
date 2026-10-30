@@ -13,7 +13,7 @@ if [ -f "$VARIABLES_FILE" ]; then
 		export "$key=$clean_value"
 	done < "$VARIABLES_FILE"
 else
-	echo "Warning: File not found at '$VARIABLES_FILE'!" && echo "Check if you have that file or download it from GitHub repository!" && echo
+	echo "Warning: File not found at '$VARIABLES_FILE'!" && echo -e "Check if you have that file or download it from the repository!\n"
 fi
 
 echo "pngANDjpg $pngANDjpg_Version" && echo
@@ -25,7 +25,7 @@ while true; do
 	case "$choice" in
 		1) ext="png"; target="jpg"; break ;;
 		2) ext="jpg"; target="png"; break ;;
-		*) echo "Invalid choice, please try again."; echo ;;
+		*) echo -e "Invalid choice, please try again.\n" ;;
 	esac
 done
 
@@ -36,7 +36,7 @@ read -r -e -p "Enter output directory for converted images (e.g. /Path/To/Output
 
 # Validate Directories
 if [ -z "$InputDir" ] || [ ! -d "$InputDir" ]; then
-	echo "Error: Invalid source directory." && echo
+	echo -e "Error: Invalid source directory.\n"
 	read -s -p "Press [Enter] to exit..." && exit 1
 fi
 
