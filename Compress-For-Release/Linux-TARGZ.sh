@@ -16,7 +16,7 @@ else
 	echo "Warning: File not found at '$VARIABLES_FILE'!" && echo -e "Check if you have that file or download it from the repository!\n"
 fi
 
-echo -e "Linux-TARGZ $DUU_Version"
+echo -e "Linux-TARGZ $DUU_Version\n"
 
 # Paths
 SOURCE_DIR=".."

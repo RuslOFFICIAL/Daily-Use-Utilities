@@ -16,14 +16,14 @@ else
 	echo "Warning: File not found at '$VARIABLES_FILE'!" && echo -e "Check if you have that file or download it from the repository!\n"
 fi
 
-echo -e "docxANDpdf $docxANDpdf_Version"
+echo -e "docxANDpdf $docxANDpdf_Version\n"
 
 # Menu Choice.
 while true; do
 	echo "1. DOCX to PDF" && echo "2. PDF to DOCX"
 	read -r -e -p "Insert your choice (1, 2): " choicev
 	[[ "$choicev" == "1" || "$choicev" == "2" ]] && break
-	echo -e "Invalid choice, please try again."
+	echo -e "Invalid choice, please try again.\n"
 done
 
 # User Input.

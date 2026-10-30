@@ -22,7 +22,7 @@ else
 	echo "Warning: File not found at '$VARIABLES_FILE'!" && echo "Check if you have that file or download it from the repository!\n"
 fi
 
-echo -e "SystemCheck $SystemCheck_Version"
+echo -e "SystemCheck $SystemCheck_Version\n"
 
 # Confirmation.
 while true; do
