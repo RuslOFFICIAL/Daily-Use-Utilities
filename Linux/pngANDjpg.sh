@@ -47,7 +47,7 @@ if [ ! -d "$OutputDir" ]; then
 fi
 
 # Convert.
-echo && echo "Converting .$ext to .$target..."
+echo -e "\nConverting .$ext to .$target..."
 for f in "$InputDir"/*."$ext"; do
 	[ -f "$f" ] || continue
 	
@@ -67,5 +67,5 @@ for f in "$InputDir"/*."$ext"; do
 done
 
 # End.
-echo && echo "Done!"
+echo -e "\nDone!"
 read -s -p "Press [Enter] to continue..." && exit 0

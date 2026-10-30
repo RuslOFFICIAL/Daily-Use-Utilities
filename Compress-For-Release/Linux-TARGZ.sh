@@ -62,6 +62,6 @@ tar -czf "$ZIP_FILE" -C "$STAGING_DIR" .
 echo "Done!" && echo -n "Cleaning up temporary folders... "
 rm -rf "$STAGING_DIR"
 
-echo "Done!" && echo && echo "Done!"
+echo "Done!" && echo -e "\nDone!"
 echo "Your release is ready inside the 'Releases' folder."
 read -s -p "Press [Enter] to continue..." && exit 0

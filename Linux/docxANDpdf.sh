@@ -73,5 +73,5 @@ else
 fi
 
 # End.
-echo && echo "Done!"
+echo -e "\nDone!"
 read -s -p "Press [Enter] to continue..." && exit 0

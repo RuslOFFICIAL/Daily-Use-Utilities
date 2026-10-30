@@ -40,11 +40,11 @@ fi
 # Compress.
 echo "Compressing files..."
 if tar -czvf "$ArchivePath" -C "$(dirname "$SourceDir")" "$(basename "$SourceDir")"; then
-	echo && echo "Success! Created: $ArchivePath"
+	echo -e "\nSuccess! Created: $ArchivePath"
 else
-	echo && echo "[ERROR] An error occurred during compression."
+	echo -e "\n[ERROR] An error occurred during compression."
 fi
 
 # End.
-echo && echo "Done!"
+echo -e "\nDone!"
 read -s -p "Press [Enter] to continue..." && exit 0

@@ -29,7 +29,7 @@ while true; do
 	read -r -e -p "Are you sure you want to run this script? (Y/n) " confirmation
 	case "$confirmation" in
 		[Yy]* ) echo; break ;;
-		[Nn]* ) echo; echo "Operation cancelled by user."; echo; read -s -p "Press [Enter] to continue..."; exit 0 ;;
+		[Nn]* ) echo -e "\nOperation cancelled by user."; echo; read -s -p "Press [Enter] to continue..."; exit 0 ;;
 		* ) echo "Please answer Y or n."; echo ;;
 	esac
 done
@@ -56,5 +56,5 @@ elif command -v pacman &> /dev/null; then
 fi
 
 # End.
-echo && echo "Done!"
+echo -e "\nDone!"
 read -s -p "Press [Enter] to continue..." && exit 0
