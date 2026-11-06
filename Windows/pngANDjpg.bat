@@ -10,7 +10,7 @@ REM Configs.
 if exist "%VariablesFile%" (
 	for /f "usebackq eol=# tokens=1,2 delims==" %%A in ("%VariablesFile%") do set "%%A=%%~B"
 ) else (
-	echo Warning: File not found at '%VariablesFile%'! & echo Check if you have that file or download it from the repository! & echo.
+	echo Warning: File not found at '%VariablesFile%'! & echo Check if there is that file or download it from the repository! & echo.
 )
 
 echo pngANDjpg %pngANDjpg_Version% & echo.
@@ -25,7 +25,7 @@ if %errorlevel% NEQ 0 (
 :Menu
 REM Images convertation choice.
 echo 1. PNG to JPG & echo 2. JPG to PNG
-set /p choice="Insert your choice (1, 2): "
+set /p choice="Insert the choice (1, 2): "
 
 if "%choice%"=="1" (
 	set "ext=png"

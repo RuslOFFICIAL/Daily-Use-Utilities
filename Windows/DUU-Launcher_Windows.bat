@@ -12,7 +12,7 @@ REM Configs.
 if exist "%VariablesFile%" (
 	for /f "usebackq eol=# tokens=1,2 delims==" %%A in ("%VariablesFile%") do set "%%A=%%~B"
 ) else (
-	echo Warning: File not found at '%VariablesFile%'^^! & echo Check if you have that file or download it from the repository^^! & echo.
+	echo Warning: File not found at '%VariablesFile%'^^! & echo Check if there is that file or download it from the repository^^! & echo.
 )
 
 if not exist "%CommandsFile%" (
@@ -51,7 +51,7 @@ if %Count%==0 (
 )
 
 echo.
-choice /c !ValidKeys! /n /m "Enter your choice (!FormattedKeys!): "
+choice /c !ValidKeys! /n /m "Enter the choice (!FormattedKeys!): "
 set "ChoiceErrorLevel=%errorlevel%"
 
 set "CurrentCount=0"

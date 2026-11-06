@@ -14,7 +14,7 @@ if [ -f "$VARIABLES_FILE" ]; then
 		export "$key=$clean_value"
 	done < "$VARIABLES_FILE"
 else
-	echo "Warning: File not found at '$VARIABLES_FILE'!" && echo -e "Check if you have that file or download it from the repository!\n"
+	echo "Warning: File not found at '$VARIABLES_FILE'!" && echo -e "Check if there is that file or download it from the repository!\n"
 fi
 
 echo "pngANDjpg $pngANDjpg_Version" && echo
@@ -22,7 +22,7 @@ echo "pngANDjpg $pngANDjpg_Version" && echo
 # Menu Selection.
 while true; do
 	echo "1. PNG to JPG" && echo "2. JPG to PNG"
-	read -r -e -p "Insert your choice (1, 2): " choice
+	read -r -e -p "Insert the choice (1, 2): " choice
 	case "$choice" in
 		1) ext="png"; target="jpg"; break ;;
 		2) ext="jpg"; target="png"; break ;;

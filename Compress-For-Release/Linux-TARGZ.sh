@@ -14,7 +14,7 @@ if [ -f "$VARIABLES_FILE" ]; then
 		export "$key=$clean_value"
 	done < "$VARIABLES_FILE"
 else
-	echo "Warning: File not found at '$VARIABLES_FILE'!" && echo -e "Check if you have that file or download it from the repository!\n"
+	echo "Warning: File not found at '$VARIABLES_FILE'!" && echo -e "Check if there is that file or download it from the repository!\n"
 fi
 
 echo -e "Linux-TARGZ $DUU_Version\n"
@@ -64,5 +64,5 @@ echo "Done!" && echo -n "Cleaning up temporary folders... "
 rm -rf "$STAGING_DIR"
 
 echo "Done!" && echo -e "\nDone!"
-echo "Your release is ready inside the 'Releases' folder."
+echo "The release is ready inside the 'Releases' folder."
 read -s -p "Press [Enter] to continue..." && exit 0

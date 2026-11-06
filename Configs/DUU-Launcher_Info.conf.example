@@ -11,7 +11,7 @@
 # File name should not include file format.
 
 
-# To make it work you need:
+# To make it work:
 # 1. Create or rename this file with the name "DUU-Launcher_Info.conf" in "Configs" directory.
 # 2. Add there options following the format and example written up there.
 # 3. Run "DUU-Launcher_{OS}".

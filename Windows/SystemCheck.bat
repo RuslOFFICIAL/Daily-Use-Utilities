@@ -21,7 +21,7 @@ REM Configs.
 if exist "%VariablesFile%" (
 	for /f "usebackq eol=# tokens=1,2 delims==" %%A in ("%VariablesFile%") do set "%%A=%%~B"
 ) else (
-	echo Warning: File not found at '%VariablesFile%'! & echo Check if you have that file or download it from the repository! & echo.
+	echo Warning: File not found at '%VariablesFile%'! & echo Check if there is that file or download it from the repository! & echo.
 )
 
 echo SystemCheck %SystemCheck_Version% & echo.
@@ -29,7 +29,7 @@ goto Confirm
 
 REM Confirmation.
 :Confirm
-set /p "Confirmation=Are you sure you want to run this script? (y/N) "
+set /p "Confirmation=Run this script? (y/N) "
 if /i not "%Confirmation%"=="Y" (
 	echo. & echo Operation cancelled by user. & echo.
 	pause & exit /b

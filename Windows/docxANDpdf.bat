@@ -10,7 +10,7 @@ REM Configs.
 if exist "%VariablesFile%" (
 	for /f "usebackq eol=# tokens=1,2 delims==" %%A in ("%VariablesFile%") do set "%%A=%%~B"
 ) else (
-	echo Warning: File not found at '%VariablesFile%'! & echo Check if you have that file or download it from the repository! & echo.
+	echo Warning: File not found at '%VariablesFile%'! & echo Check if there is that file or download it from the repository! & echo.
 )
 
 echo docxANDpdf %docxANDpdf_Version% & echo.
@@ -19,7 +19,7 @@ goto Choice
 REM Choice.
 :Choice
 echo 1. DOCX to PDF & echo 2. PDF to DOCX
-set /p choicev="Insert your choice (1, 2): "
+set /p choicev="Insert the choice (1, 2): "
 goto UserInput
 
 REM User input.
@@ -66,7 +66,7 @@ if %errorlevel% NEQ 0 (
 	REM Verify installation again.
 	where docx2pdf >nul 2>&1
 	if %errorlevel% NEQ 0 (
-		echo Installation failed or command not found. & echo Please ensure Python is added to your PATH. & echo.
+		echo Installation failed or command not found. & echo Please ensure Python is added to the PATH. & echo.
 		pause & exit /b
 	)
 ) else (
@@ -95,7 +95,7 @@ if %errorlevel% NEQ 0 (
 	REM Verify installation again.
 	python -c "import pdf2docx" >nul 2>&1
 	if %errorlevel% NEQ 0 (
-		echo Installation failed or command not found. & echo Please ensure Python is added to your PATH. & echo.
+		echo Installation failed or command not found. & echo Please ensure Python is added to the PATH. & echo.
 		pause & exit /b
 	)
 ) else (
