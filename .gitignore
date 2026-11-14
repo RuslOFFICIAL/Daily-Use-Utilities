@@ -14,4 +14,4 @@ Configs/
 !*.example
 
 !Configs/Variables.conf
-!Configs/DUU-Launcher_Info.conf.example
+!Configs/DUU-Launcher_Info.conf
