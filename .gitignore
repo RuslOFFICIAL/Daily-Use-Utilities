@@ -1,9 +1,7 @@
 # Folders.
 Releases/
-TempRelease*/
-
-Configs/
-!Configs/*
+TempRelease/
+Configs/*
 
 # Files.
 *.zip
