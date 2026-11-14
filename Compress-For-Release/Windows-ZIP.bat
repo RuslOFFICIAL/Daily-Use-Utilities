@@ -5,6 +5,8 @@ setlocal
 REM Variables.
 set "VariablesFileName=Variables.conf"
 set "VariablesFile=..\Configs\%VariablesFileName%"
+set "IncludeFile1Name=DUU-Launcher_Info.conf"
+set "IncludeFile1=..\Configs\%IncludeFile1Name%"
 
 REM Configs.
 if exist "%VariablesFile%" (
@@ -34,9 +36,16 @@ for %%f in ("%ZipFolder%\DUU_*-Windows.zip") do (
 echo Preparing release folder...
 robocopy "%SourceDir%" "%StagingDir%" /E /XF *.conf *.lnk DUU-Linux.sh /XD TempReleaseWin TempReleaseLinux Releases .git Linux Configs
 
-echo Including '%VariablesFileName%' in release...
+echo Including all '.example' files in release...
 if not exist "%ConfigsDir%" mkdir "%ConfigsDir%"
-copy "%VariablesFile%" "%ConfigsDir%"
+for %%f in ("..\Configs\*.example") do (
+	if exist "%%f" copy "%%f" "%ConfigsDir%\" >nul
+)
+
+echo Including '%VariablesFileName%' and '%IncludeFile1Name%' in release...
+if not exist "%ConfigsDir%" mkdir "%ConfigsDir%"
+copy "%VariablesFile%" "%ConfigsDir%" >nul
+copy "%IncludeFile1%" "%ConfigsDir%" >nul
 
 echo. & echo Compressing into .zip file...
 REM Create the output directory if it doesn't exist.

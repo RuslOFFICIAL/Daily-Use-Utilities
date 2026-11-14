@@ -5,6 +5,8 @@ cd "$(dirname "$0")" || exit
 # Variables.
 VARIABLES_FILE_NAME="Variables.conf"
 VARIABLES_FILE="../Configs/$VARIABLES_FILE_NAME"
+INCLUDE_FILE_1_NAME="DUU-Launcher_Info.conf"
+INCLUDE_FILE_1="../Configs/$INCLUDE_FILE_1_NAME"
 
 # Configs.
 if [ -f "$VARIABLES_FILE" ]; then
@@ -45,9 +47,13 @@ for item in ../*; do
 done
 shopt -u dotglob
 
-echo "Done!" && echo -n "Including '$VARIABLES_FILE_NAME' in release... "
+echo "Done!" && echo -n "Including all '.example' files in release... "
+cp ../Configs/*.example "$CONFIGS_DIR/"
+
+echo "Done!" && echo -n "Including '$VARIABLES_FILE_NAME' and '$INCLUDE_FILE_1_NAME' in release... "
 mkdir -p "$CONFIGS_DIR"
 cp "$VARIABLES_FILE" "$CONFIGS_DIR"
+cp "$INCLUDE_FILE_1" "$CONFIGS_DIR"
 
 # Make files to be executable.
 if [ -n "$Executable" ]; then
