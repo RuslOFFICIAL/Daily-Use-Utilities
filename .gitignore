@@ -2,10 +2,16 @@
 Releases/
 TempRelease*/
 
+Configs/
+!Configs/*
+
 # Files.
 *.zip
 *.tar.gz
 *.lnk
-
 *.conf
-!Variables.conf
+
+!*.example
+
+!Configs/Variables.conf
+!Configs/DUU-Launcher_Info.conf.example
