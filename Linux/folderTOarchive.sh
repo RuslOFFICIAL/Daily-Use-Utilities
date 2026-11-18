@@ -26,7 +26,7 @@ read -r -e -p "Enter the destination .TAR.GZ path (e.g. /Path/To/File.tar.gz): "
 # Check and Clean.
 if [ -z "$SourceDir" ] || [ -z "$ArchivePath" ]; then
 	echo -e "No valid directory or output path was provided.\n"
-	read -s -p "Press [Enter] to exit..." && exit 1
+	read -r -s -p "Press [Enter] to exit..." && exit 1
 fi
 
 if [ -f "$ArchivePath" ]; then
@@ -34,7 +34,7 @@ if [ -f "$ArchivePath" ]; then
 	rm -f "$ArchivePath"
 	if [ -f "$ArchivePath" ]; then
 		echo -e "[ERROR] Could not delete existing archive. Please check permissions.\n"
-		read -s -p "Press [Enter] to exit..." && exit 1
+		read -r -s -p "Press [Enter] to exit..." && exit 1
 	fi
 fi
 
@@ -48,4 +48,4 @@ fi
 
 # End.
 echo -e "\nDone!"
-read -s -p "Press [Enter] to continue..." && exit 0
+read -r -s -p "Press [Enter] to continue..." && exit 0

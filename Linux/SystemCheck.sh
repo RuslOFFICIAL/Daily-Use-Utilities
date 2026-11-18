@@ -5,7 +5,7 @@ cd "$(dirname "$0")" || exit
 # Admin check.
 if [ "$EUID" -ne 0 ]; then
 	echo "Failure: This script must be run as an Administrator (sudo)."
-	read -s -p "Press [Enter] to continue..." && exit 1
+	read -r -s -p "Press [Enter] to continue..." && exit 1
 fi
 
 # Variables.
@@ -30,7 +30,7 @@ while true; do
 	read -r -e -p "Run this script? (Y/N) " confirmation
 	case "$confirmation" in
 		[Yy]* ) echo; break ;;
-		[Nn]* ) echo -e "\nOperation cancelled by user.\n"; read -s -p "Press [Enter] to continue..."; exit 0 ;;
+		[Nn]* ) echo -e "\nOperation cancelled by user.\n"; read -r -s -p "Press [Enter] to continue..."; exit 0 ;;
 		* ) echo -e "Please answer Y or n.\n" ;;
 	esac
 done
@@ -58,4 +58,4 @@ fi
 
 # End.
 echo -e "\nDone!"
-read -s -p "Press [Enter] to continue..." && exit 0
+read -r -s -p "Press [Enter] to continue..." && exit 0

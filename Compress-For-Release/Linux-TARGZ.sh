@@ -23,9 +23,9 @@ echo -e "Linux-TARGZ $DUU_Version\n"
 
 # Paths
 SOURCE_DIR=".."
-STAGING_DIR="../TempReleaseLinux"
+STAGING_DIR="$SOURCE_DIR/TempReleaseLinux"
 CONFIGS_DIR="$STAGING_DIR/Configs"
-ZIP_FOLDER="../Releases"
+ZIP_FOLDER="$SOURCE_DIR/Releases"
 ZIP_FILE="$ZIP_FOLDER/DUU_$DUU_Version-Linux.tar.gz"
 
 echo -n "Cleaning release folder... "
@@ -59,7 +59,7 @@ cp "$INCLUDE_FILE_1" "$CONFIGS_DIR"
 if [ -n "$Executable" ]; then
 	echo "Done!" && echo -n "Applying executable permissions... "
 	
-	(cd "$STAGING_DIR" && chmod $Executable 2>/dev/null)
+	(cd "$STAGING_DIR" && chmod +x "$Executable" 2>/dev/null)
 fi
 
 echo "Done!" && echo -n "Compressing into .tar.gz file... "
@@ -71,4 +71,4 @@ rm -rf "$STAGING_DIR"
 
 echo "Done!" && echo -e "\nDone!"
 echo "The release is ready inside the 'Releases' folder."
-read -s -p "Press [Enter] to continue..." && exit 0
+read -r -s -p "Press [Enter] to continue..." && exit 0

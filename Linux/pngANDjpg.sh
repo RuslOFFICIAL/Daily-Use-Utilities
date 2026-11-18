@@ -38,7 +38,7 @@ read -r -e -p "Enter output directory for converted images (e.g. /Path/To/Output
 # Validate Directories
 if [ -z "$InputDir" ] || [ ! -d "$InputDir" ]; then
 	echo -e "Error: Invalid source directory.\n"
-	read -s -p "Press [Enter] to exit..." && exit 1
+	read -r -s -p "Press [Enter] to exit..." && exit 1
 fi
 
 if [ ! -d "$OutputDir" ]; then
@@ -69,4 +69,4 @@ done
 
 # End.
 echo -e "\nDone!"
-read -s -p "Press [Enter] to continue..." && exit 0
+read -r -s -p "Press [Enter] to continue..." && exit 0

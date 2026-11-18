@@ -35,7 +35,7 @@ read -r -e -p "Enter the output directory for output files (e.g. /Path/To/Output
 # Validate and Prepare Directories.
 if [ -z "$InputDir" ] || [ ! -d "$InputDir" ]; then
 	echo -e "Error: Source directory does not exist.\n"
-	read -s -p "Press [Enter] to exit..." && exit 1
+	read -r -s -p "Press [Enter] to exit..." && exit 1
 fi
 
 if [ ! -d "$OutputDir" ]; then
@@ -75,4 +75,4 @@ fi
 
 # End.
 echo -e "\nDone!"
-read -s -p "Press [Enter] to continue..." && exit 0
+read -r -s -p "Press [Enter] to continue..." && exit 0
