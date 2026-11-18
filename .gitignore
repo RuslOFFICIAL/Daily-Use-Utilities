@@ -8,6 +8,7 @@ Configs/*
 *.tar.gz
 *.lnk
 *.conf
+tempCodeRunnerFile.*
 
 !*.example
 
